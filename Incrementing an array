@@ -1,0 +1,27 @@
+class Solution {
+public:
+    //The simple solution would be to convert to an int then increment and place it back into the array
+    
+    //The solution with no additional conversions would involve incrementing the index then checking if it is greater than 9. If so increment the next index. Contiue to do this until there is no more spill over
+    vector<int> plusOne(vector<int>& digits) {
+        int arrSize = size(digits);
+        cout << arrSize << endl;
+        int i = arrSize - 1; //keeps track of current digit
+        //Part where we calculate the spill over and increment
+        while (i >= 0){
+            int curElem = digits[i];
+            curElem++;
+            if(curElem < 10){
+                digits[i] = curElem;
+                return digits;
+            }else{
+                digits[i] = 0;
+                i--;
+            }
+        }
+        
+        digits.resize(arrSize+1);
+        digits[0] = 1;
+        return digits;
+    }
+};
